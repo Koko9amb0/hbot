@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <title>MODO — Одежда</title>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="logo">MODO</div>
+  <div class="header-right">
+    <button class="search-btn" onclick="toggleSearch()">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2" stroke-linecap="round">
+        <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+      </svg>
+    </button>
+    <button class="cart-btn" onclick="openCart()">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2" stroke-linecap="round">
+        <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/>
+      </svg>
+      <span class="cart-count" id="cartCount">0</span>
+    </button>
+  </div>
+</div>
+
+<!-- SEARCH -->
+<div class="search-bar" id="searchBar">
+  <input class="search-input" type="text" placeholder="Поиск товаров..." oninput="filterProducts(this.value)">
+</div>
+
+<!-- BANNER -->
+<div class="banner">
+  <div class="banner-tag">🔥 Новая коллекция</div>
+  <h2>ВЕСНА<br>2025</h2>
+  <p>Стиль для каждого дня</p>
+  <button class="banner-btn" onclick="scrollToProducts()">Смотреть всё</button>
+</div>
+
+<!-- CATEGORIES -->
+<div class="section-title">Категории</div>
+<div class="categories" id="categories">
+  <div class="cat-chip active" onclick="filterCat('all', this)">Все</div>
+  <div class="cat-chip" onclick="filterCat('tops', this)">Верх</div>
+  <div class="cat-chip" onclick="filterCat('bottoms', this)">Низ</div>
+  <div class="cat-chip" onclick="filterCat('outerwear', this)">Верхняя одежда</div>
+  <div class="cat-chip" onclick="filterCat('accessories', this)">Аксессуары</div>
+</div>
+
+<!-- PRODUCTS -->
+<div class="section-title" id="productsSection" style="margin-top:20px">Товары</div>
+<div class="products" id="products"></div>
+
+<div class="spacer"></div>
+
+<!-- BOTTOM NAV -->
+<div class="bottom-nav">
+  <div class="nav-item active">
+    <span class="nav-icon">🏠</span>
+    <span class="nav-label">Главная</span>
+  </div>
+  <div class="nav-item" onclick="openCart()">
+    <span class="nav-icon">🛍</span>
+    <span class="nav-label">Корзина</span>
+  </div>
+  <div class="nav-item">
+    <span class="nav-icon">❤️</span>
+    <span class="nav-label">Избранное</span>
+  </div>
+  <div class="nav-item">
+    <span class="nav-icon">👤</span>
+    <span class="nav-label">Профиль</span>
+  </div>
+</div>
+
+<!-- CART DRAWER -->
+<div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
+<div class="cart-drawer" id="cartDrawer">
+  <div class="drawer-handle"></div>
+  <div class="cart-title">Корзина</div>
+  <div id="cartItems"></div>
+  <div class="cart-total" id="cartTotal" style="display:none">
+    <span>Итого:</span>
+    <span id="totalPrice">0 ₽</span>
+  </div>
+  <button class="checkout-btn" id="checkoutBtn" style="display:none" onclick="checkout()">
+    Оформить заказ
+  </button>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+</body>
+</html>
